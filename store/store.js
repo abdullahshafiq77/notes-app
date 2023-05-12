@@ -1,10 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import authReducer from "./slices/authSlice";
-import myPageReducer from "./slices/mypageSlice";
+import notesReducer from './slices/notesSlice';
 const reducer = {
-  auth: authReducer,
-  myPage: myPageReducer,
+  notes: notesReducer,
 };
 
 export const store = configureStore({

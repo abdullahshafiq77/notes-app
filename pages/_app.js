@@ -1,41 +1,15 @@
-import "@/styles/globals.css";
-import "react-toastify/dist/ReactToastify.css";
-import { Provider as StoreProvider } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { Provider as StoreProvider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
-import { store } from "../store/store";
-import { ProtectRoute } from "auth";
-import Layout from "@/components/Layout/Layout";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { HttpService } from "@/utils/HttpService";
-import { useEffect } from "react";
-import api from "@/services/api";
-// import "@fortawesome/fontawesome-svg-core/styles.css";
-
-// import { config } from "@fortawesome/fontawesome-svg-core";
-// config.autoAddCss = false;
-const queryClient = new QueryClient();
+import { store } from '../store/store';
 
 export default function App({ Component, pageProps }) {
-  //setting default header on refreshing the page
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      //  HttpService.setToken(token);
-      api.defaults.headers.Authorization = `Bearer ${token}`;
-    }
-  }, []);
-
   return (
-    <ProtectRoute>
-      <StoreProvider store={store}>
-        <QueryClientProvider client={queryClient}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </QueryClientProvider>
-      </StoreProvider>
+    <StoreProvider store={store}>
+      <Component {...pageProps} />
       <ToastContainer />
-    </ProtectRoute>
+    </StoreProvider>
   );
 }

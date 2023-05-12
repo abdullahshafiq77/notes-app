@@ -1,11 +1,7 @@
-import AdvertisementModulePage from "@/modules/Advertisement/Pages/AdvertisementModulePage";
+import Notes from './notes';
 
-export default function Home() {
-  return (
-    <main className="p-10">
-      <>
-        <AdvertisementModulePage />
-      </>
-    </main>
-  );
-}
+const NotesPage = () => {
+  return <Notes />;
+};
+
+export default NotesPage;
